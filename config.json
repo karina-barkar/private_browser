@@ -13,7 +13,7 @@
   {
     "use_proxybroker" : 0,
     "proxies_url" : "https://raw.githubusercontent.com/karina-barkar/private_browser/main/proxies.txt",
-    "count" : "30"
+    "count" : "10"
   },
   "icons":
   {
