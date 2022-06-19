@@ -6,29 +6,30 @@ from PyQt5.QtWidgets import QDialog, QDialogButtonBox, QVBoxLayout, QLabel
 
 
 class AboutPBrowser(QDialog):
+    """ Диалог 'О программе' """
     def __init__(self, *args, **kwargs):
         super(AboutPBrowser, self).__init__(*args, **kwargs)
-        with open('config.json') as config_file:
+        with open('config.json') as config_file:            # Из файла конфигурации будем брать данные о программе
             config_data = json.load(config_file)
-        layout = QVBoxLayout()                              # Будем виджеты располагать по вертикали
-        pb_title = QLabel(config_data['application']['name'])
+        layout = QVBoxLayout()                              # Будем виджеты располагать по вертикали (Vertical layout)
+        pb_title = QLabel(config_data['application']['name'])   # QLabel с названием
         title_font = pb_title.font()
-        title_font.setPointSize(24)
-        title_font.setWeight(78)
+        title_font.setPointSize(24)                             # Размер шрифта
+        title_font.setWeight(78)                                # Жирный шрифт
         pb_title.setFont(title_font)
         layout.addWidget(pb_title)
-        pb_logo = QLabel()
+        pb_logo = QLabel()                                      # Логотип приложения
         pb_logo.setPixmap(QPixmap(res_path('logo_pb.png')))
         layout.addWidget(pb_logo)
         layout.addWidget(QLabel(f"Version: {config_data['application']['version']} "
                                 f"Build {config_data['application']['build']}"))
         layout.addWidget(QLabel(config_data['application']['about']))
-        ok_btn = QDialogButtonBox.Ok
+        ok_btn = QDialogButtonBox.Ok                            # На виджете расположим кнопку ОК
         self.buttonBox = QDialogButtonBox(ok_btn)
         self.buttonBox.accepted.connect(self.accept)
         self.buttonBox.rejected.connect(self.accept)
         layout.addWidget(self.buttonBox)
-        for i in range(0, layout.count()):
+        for i in range(0, layout.count()):                      # Выравнивание виджетов
             layout.itemAt(i).setAlignment(Qt.AlignHCenter)
         self.setLayout(layout)
-        self.setWindowFlags(Qt.CustomizeWindowHint | Qt.WindowCloseButtonHint)
+        self.setWindowFlags(Qt.CustomizeWindowHint | Qt.WindowCloseButtonHint)  # Оставим только кнопку Close
