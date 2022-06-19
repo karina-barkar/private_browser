@@ -18,14 +18,17 @@ async def add_list(proxies):
 
 
 def find_proxies():
-    """ функция поиска списка рабочих прокси-серверов """
+    """ функция поиска списка рабочих прокси-серверов
+     Поскольку данная библиотека работает крайне нестабильно, список прокси был предустановлен.
+     Если у вас она работает, то можно в конфиге config.json установить значение "use_proxybroker" равным 1 """
     global proxy_list
-    proxies = asyncio.Queue()
-    broker = Broker(proxies)                        # брокер поиска из библиотеки proxybroker
-    tasks = asyncio.gather(broker.find(types=['HTTP', 'HTTPS'], # будем искать http и https прокси
-                                       limit=int(config_data["proxies"]["count"])), add_list(proxies))
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(tasks)                  # запуск цикла поиска прокси-серверов
+    if config_data["proxies"]["use_proxybroker"]:
+        proxies = asyncio.Queue()
+        broker = Broker(proxies)                        # брокер поиска из библиотеки proxybroker
+        tasks = asyncio.gather(broker.find(types=['HTTP', 'HTTPS'], # будем искать http и https прокси
+                                           limit=int(config_data["proxies"]["count"])), add_list(proxies))
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(tasks)                  # запуск цикла поиска прокси-серверов
     if len(proxy_list) == 0:                        # костыль, на случай если не удалось найти ни одного прокси
         proxy_list = [['US', '35.170.197.3', 8888, 0.19], ['US', '168.8.172.2', 80, 0.15],
                       ['US', '143.198.242.86', 8048, 0.17], ['US', '34.145.226.144', 8080, 0.17],

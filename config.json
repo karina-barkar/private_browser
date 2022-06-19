@@ -11,6 +11,7 @@
   },
   "proxies":
   {
+    "use_proxybroker" : 0,
     "count" : "10"
   },
   "icons":
