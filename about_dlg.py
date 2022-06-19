@@ -1,7 +1,7 @@
 import json
 from res_path import res_path
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QPixmap
+from PyQt5.QtGui import QPixmap, QIcon
 from PyQt5.QtWidgets import QDialog, QDialogButtonBox, QVBoxLayout, QLabel
 
 
@@ -32,4 +32,5 @@ class AboutPBrowser(QDialog):
         for i in range(0, layout.count()):                      # Выравнивание виджетов
             layout.itemAt(i).setAlignment(Qt.AlignHCenter)
         self.setLayout(layout)
+        self.setWindowIcon(QIcon(res_path(('logo_pb.png'))))
         self.setWindowFlags(Qt.CustomizeWindowHint | Qt.WindowCloseButtonHint)  # Оставим только кнопку Close
