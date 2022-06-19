@@ -2,26 +2,31 @@ import json
 import asyncio
 from proxybroker import Broker
 
-with open('config.json') as config_file:
-    config_data = json.load(config_file)
+with open('config.json') as config_file:            # читаем конфиг
+    config_data = json.load(config_file)            # из которого потом получим сколько нужно различных прокси
 proxy_list = []
 
+
 async def add_list(proxies):
+    """ асинхронная функция получения прокси и добавления в список """
+    global proxy_list
     while True:
-        proxy = await proxies.get()
-        if proxy is None:
+        proxy = await proxies.get()                 # ждём прокси
+        if proxy is None:                           # и добавляем в список, если он не пустой
             break
         proxy_list.append([proxy.geo.code, proxy.host, proxy.port, proxy.avg_resp_time])
 
+
 def find_proxies():
-    proxy_list = []
+    """ функция поиска списка рабочих прокси-серверов """
+    global proxy_list
     proxies = asyncio.Queue()
-    broker = Broker(proxies)
-    tasks = asyncio.gather(broker.find(types=['HTTP', 'HTTPS'],
+    broker = Broker(proxies)                        # брокер поиска из библиотеки proxybroker
+    tasks = asyncio.gather(broker.find(types=['HTTP', 'HTTPS'], # будем искать http и https прокси
                                        limit=int(config_data["proxies"]["count"])), add_list(proxies))
     loop = asyncio.get_event_loop()
-    loop.run_until_complete(tasks)
-    if len(proxy_list) == 0:
+    loop.run_until_complete(tasks)                  # запуск цикла поиска прокси-серверов
+    if len(proxy_list) == 0:                        # костыль, на случай если не удалось найти ни одного прокси
         proxy_list = [['US', '35.170.197.3', 8888, 0.19], ['US', '168.8.172.2', 80, 0.15],
                       ['US', '143.198.242.86', 8048, 0.17], ['US', '34.145.226.144', 8080, 0.17],
                       ['US', '104.200.18.76', 3128, 0.22], ['DE', '95.217.72.247', 3128, 0.26],
