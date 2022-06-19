@@ -1,5 +1,4 @@
-import json
-import asyncio
+import json, requests, asyncio
 from proxybroker import Broker
 
 with open('config.json') as config_file:            # читаем конфиг
@@ -29,6 +28,14 @@ def find_proxies():
                                            limit=int(config_data["proxies"]["count"])), add_list(proxies))
         loop = asyncio.get_event_loop()
         loop.run_until_complete(tasks)                  # запуск цикла поиска прокси-серверов
+    else:
+        try:
+            responce = requests.get(config_data["proxies"]["proxies_url"])
+            proxy_list = json.load(responce.content)
+            print(proxy_list)
+        except:
+            pass
+
     if len(proxy_list) == 0:                        # костыль, на случай если не удалось найти ни одного прокси
         proxy_list = [['US', '35.170.197.3', 8888, 0.19], ['US', '168.8.172.2', 80, 0.15],
                       ['US', '143.198.242.86', 8048, 0.17], ['US', '34.145.226.144', 8080, 0.17],
