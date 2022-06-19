@@ -1,0 +1,20 @@
+{
+  "application":
+  {
+    "name" : "Private Browser",
+    "version" : "1.0",
+    "build" : "19",
+    "about" : "Karyna Barkar's course project",
+    "org" : "Odesа Polytechnic National University",
+    "url" : "https://op.edu.ua/ics",
+    "homepage" : "http://mail.i.ua"
+  },
+  "proxies":
+  {
+    "count" : "12"
+  },
+  "icons":
+  {
+    "folder" : ""
+  }
+}
