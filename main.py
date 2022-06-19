@@ -118,7 +118,7 @@ class PBMainWindow(QMainWindow):
 
     def create_menu_bar(self):
         menu_bar = self.menuBar()
-        # menu_bar.setNativeMenuBar(False)
+        menu_bar.setNativeMenuBar(False)
         file_menu = menu_bar.addMenu('&File')
         new_tab_action = QAction(QIcon(res_path('ic_tab_plus.png')), 'New Tab', self)
         new_tab_action.setStatusTip('Open a new tab')
