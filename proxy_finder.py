@@ -31,8 +31,7 @@ def find_proxies():
     else:
         try:
             responce = requests.get(config_data["proxies"]["proxies_url"])
-            proxy_list = json.load(responce.content)
-            print(proxy_list)
+            proxy_list = json.loads(responce.content)
         except:
             pass
 
