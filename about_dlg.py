@@ -14,7 +14,7 @@ class AboutPBrowser(QDialog):
         layout = QVBoxLayout()                              # Будем виджеты располагать по вертикали (Vertical layout)
         pb_title = QLabel(config_data['application']['name'])   # QLabel с названием
         title_font = pb_title.font()
-        title_font.setPointSize(24)                             # Размер шрифта
+        title_font.setPointSize(20)                             # Размер шрифта
         title_font.setWeight(78)                                # Жирный шрифт
         pb_title.setFont(title_font)
         layout.addWidget(pb_title)
