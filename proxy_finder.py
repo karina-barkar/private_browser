@@ -29,7 +29,8 @@ def find_proxies():
         loop = asyncio.get_event_loop()
         loop.run_until_complete(tasks)                  # запуск цикла поиска прокси-серверов
     else:
-        try:
+        try:    # если не используем proxybroker, пытаемся стянуть список прокси с общедоступного ресурса,
+                # это позволит держать актуальным список прокси без необходимости перевыпуска приложения
             responce = requests.get(config_data["proxies"]["proxies_url"])
             proxy_list = json.loads(responce.content)
         except:
