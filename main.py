@@ -215,7 +215,7 @@ class PBMainWindow(QMainWindow):
         self.tabs.currentWidget().setUrl(QUrl("https://www.iplocation.net/"))
 
     def navigate_browserleaks(self):
-        self.tabs.currentWidget().setUrl(QUrl("https://browserleaks.com/"))
+        self.tabs.currentWidget().setUrl(QUrl("https://browserleaks.com/ip"))
 
     def navigate_ipleak(self):
         self.tabs.currentWidget().setUrl(QUrl("https://ipleak.net/"))
