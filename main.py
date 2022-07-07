@@ -194,7 +194,7 @@ class PBMainWindow(QMainWindow):
 
     def page_load_finished_handler(self, i, browser):
         """Метод вызывается когда страница браузера полностью загружена"""
-        self.tabs.setTabText(i, browser.page().title())  # в названии табы отобразим настрание страницы
+        self.tabs.setTabText(i, browser.page().title())  # в названии табы отобразим название страницы
         self.tabs.setTabToolTip(i, browser.page().title())  # и тултип на всякий случай, если табов будет много
         try:  # favicon странички получим из недокументированного API Google (зато работает безотказно)
             favicon = requests.get(f'https://www.google.com/s2/favicons?domain='
@@ -264,7 +264,7 @@ class PBMainWindow(QMainWindow):
         self.htmlFinished.emit()
 
     def save_file(self):
-        """Метод открывает html-файл текущей вкладке браузера"""
+        """Метод сохраняет в файл html текущей вкладке браузера"""
         # вызов диалога сохранения файла
         filename, _ = QFileDialog.getSaveFileName(self, "Save Page", "", "HTML (*.htm *html);;" "All files (*.*)")
         if filename:  # если имя не пустое - сохраняем страницу
