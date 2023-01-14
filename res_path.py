@@ -11,4 +11,4 @@ def res_path(filename: str) -> str:
 
 def flag_path(country_code: str) -> str:
     """Функция возвращает путь к флагу по коду страны"""
-    return os.path.join(f'/res/flags', (country_code.upper() + '.png'))
+    return os.path.join(f"res/flags", (country_code.upper() + ".png"))
