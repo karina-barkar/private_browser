@@ -43,6 +43,7 @@ class PBMainWindow(QMainWindow):
         self.update_url_bar(url=QUrl(config_data["application"]["homepage"]))
         self.setWindowTitle(config_data["application"]["name"])
         self.setWindowIcon(QIcon(res_path(("logo_pb.png"))))
+        self.showMaximized()
         self.show()
 
     def set_proxy(self, index):
