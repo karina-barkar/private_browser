@@ -23,7 +23,6 @@ def find_proxies():
                     proxies_list[proxy_counter]["geolocation"]["countryCode"],
                 ]
             )
-        print(proxy_list)
     except:
         pass
 
