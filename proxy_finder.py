@@ -1,14 +1,14 @@
 import json
 import requests
 
-with open("config.json") as config_file:  # читаем конфиг
-    config_data = json.load(
-        config_file
-    )  # из которого потом получим сколько нужно различных прокси
+with open(
+    "config.json"
+) as config_file:  # читаем конфиг, из которого потом получим сколько нужно различных прокси
+    config_data = json.load(config_file)
 proxy_list = []
 
 
-def find_proxies():
+def find_proxies() -> list:
     global proxy_list
     try:
         responce = requests.get(config_data["proxies"]["proxies_url"])
