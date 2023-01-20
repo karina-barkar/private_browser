@@ -33,7 +33,6 @@ def find_proxies() -> list:
             ["United States, North Bergen", "161.35.48.185", 443, "US"],
             ["United States, Oak Lawn", "209.37.250.19", 80, "US"],
             ["United States, Kansas City", "190.92.190.121", 3128, "US"],
-            ["United States, Kansas City", "190.92.190.121", 3128, "US"],
             ["United States, Los Angeles", "23.225.72.125", 3503, "US"],
             ["Germany, Falkenstein", "148.251.150.106", 3128, "DE"],
             ["France, Paris", "51.158.154.173", 3128, "FR"],
